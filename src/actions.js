@@ -16,7 +16,10 @@ export const notEkleAPI = (yeniNot) => (dispatch) => {
     .post("https://httpbin.org/anything", yeniNot)
     .then((res) => {
       if (res.status === 200) {
+        console.log("res.data", res.data);
         // res.data objesi içerisinden ihtiyaç duyduğunuz değeri bulun ve oluşturduğunuz notEkle ile dispatch edin
+
+        dispatch(notEkle(res.data.json));
       }
     })
     .catch((error) => console.log(error));

@@ -7,8 +7,8 @@ import { notSil } from "../actions";
 export default function Post({ item }) {
   const dispatch = useDispatch();
 
-  function handleSil(notId) {
-    dispatch(notSil(notId));
+  function handleSil() {
+    dispatch(notSil(item.id));
     // sonra toast mesajı gösterin
   }
 

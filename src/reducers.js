@@ -18,7 +18,13 @@ export const reducer = (state = baslangicDegerleri, action) => {
     case "NOT_SIL":
       return {
         ...state,
-        notlar: state.notlar.filter((item) => item.id === action.payload),
+        notlar: state.notlar.filter((item) => item.id !== action.payload),
+      };
+
+    case "NOT_EKLE_API":
+      return {
+        ...state,
+        notlar: [...state.notlar, action.payload],
       };
 
     default:
