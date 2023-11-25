@@ -10,6 +10,22 @@ const baslangicDegerleri = {
   ],
 };
 
+export const reducer = (state = baslangicDegerleri, action) => {
+  switch (action.type) {
+    case "NOT_EKLE":
+      return { ...state, notlar: [...state.notlar, action.payload] };
+
+    case "NOT_SIL":
+      return {
+        ...state,
+        notlar: state.notlar.filter((item) => item.id === action.payload),
+      };
+
+    default:
+      return state;
+  }
+};
+
 function localStorageStateYaz(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
@@ -24,6 +40,6 @@ function baslangicNotlariniGetir(key) {
   if (eskiNotlar) {
     return localStorageStateOku(key);
   } else {
-    return baslangicDegerleri
+    return baslangicDegerleri;
   }
 }
