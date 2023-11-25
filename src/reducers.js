@@ -1,3 +1,5 @@
+import { NOT_EKLE_API, NOT_SIL_API } from "./actions";
+
 const s10chLocalStorageKey = "s10ch";
 
 const baslangicDegerleri = {
@@ -12,19 +14,16 @@ const baslangicDegerleri = {
 
 export const reducer = (state = baslangicDegerleri, action) => {
   switch (action.type) {
-    case "NOT_EKLE":
-      return { ...state, notlar: [...state.notlar, action.payload] };
-
-    case "NOT_SIL":
-      return {
-        ...state,
-        notlar: state.notlar.filter((item) => item.id !== action.payload),
-      };
-
-    case "NOT_EKLE_API":
+    case NOT_EKLE_API:
       return {
         ...state,
         notlar: [...state.notlar, action.payload],
+      };
+
+    case NOT_SIL_API:
+      return {
+        ...state,
+        notlar: state.notlar.filter((item) => item.id !== action.payload),
       };
 
     default:

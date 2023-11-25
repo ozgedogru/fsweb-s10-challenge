@@ -5,6 +5,7 @@ import { useHistory } from "react-router";
 import Gratitude from "./../assets/grForm.png";
 import { useDispatch } from "react-redux";
 import { notEkleAPI } from "../actions";
+import { toast } from "react-toastify";
 
 export default function PostForm() {
   const {
@@ -26,13 +27,16 @@ export default function PostForm() {
     };
 
     dispatch(notEkleAPI(yeniNot));
-    console.log(yeniNot);
 
-    // burada ilgili eylemi dispatch edin
-    // toast mesajı gösterin
-    // sonra aşağıdaki satırı aktifleştirin
+    toast.loading("Not ekleniyor...");
 
-    //setTimeout(() => history.push("/notlar"), 2000);
+    setTimeout(() => {
+      toast.dismiss();
+
+      history.push("/notlar");
+
+      toast.success("Yeni bir not eklendi!");
+    }, 2000);
   }
 
   const inputCx = "border border-zinc-300 h-9 rounded-none text-sm px-2 w-full";
